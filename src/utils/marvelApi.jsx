@@ -28,8 +28,8 @@ const marvelAPI = axios.create({
 });
 
 const handleAxiosResponse = (response) => {
-  if (response?.data?.results) {
-    return response.data.results;
+  if (response?.data?.data?.results) {
+    return response.data.data.results;
   } else {
     throw new Error('No data found.');
   }
@@ -61,7 +61,7 @@ export const getMarvelCharacterById = async (characterId) => {
     const response = await marvelAPI.get(`/characters/${characterId}`, {
       params: authParams,
     });
-    return handleAxiosResponse(response)[0]; // Returning only the first result
+    return handleAxiosResponse(response)[0]; 
   } catch (error) {
     handleAxiosError(error);
   }

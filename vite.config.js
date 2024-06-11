@@ -16,6 +16,9 @@ export default defineConfig({
       '@page': path.resolve(
         url.fileURLToPath(new URL('./src/pages/', import.meta.url)),
       ),
+      '@assets': path.resolve(
+        url.fileURLToPath(new URL('./src/assets/', import.meta.url)),
+      ),
     },
   },
 });
