@@ -1,17 +1,16 @@
 import axios from 'axios';
 import CryptoJS from 'crypto-js';
 
-// Marvel API keys
 const {
   VITE_APP_MARVEL_API_BASE_URL,
   VITE_APP_MARVEL_API_PUBLIC_KEY,
   VITE_APP_MARVEL_API_PRIVATE_KEY,
 } = import.meta.env;
+
 const MARVEL_API_BASE_URL = VITE_APP_MARVEL_API_BASE_URL;
 const MARVEL_API_PUBLIC_KEY = VITE_APP_MARVEL_API_PUBLIC_KEY;
 const MARVEL_API_PRIVATE_KEY = VITE_APP_MARVEL_API_PRIVATE_KEY;
 
-// Function to generate the necessary hash for authentication
 const generateHash = () => {
   const timestamp = new Date().getTime();
   const hash = CryptoJS.MD5(
@@ -24,45 +23,50 @@ const generateHash = () => {
   };
 };
 
-// Create an axios instance with base configuration
 const marvelAPI = axios.create({
   baseURL: MARVEL_API_BASE_URL,
 });
 
-// Intercept request errors
-marvelAPI.interceptors.response.use(
-  (response) => response.data,
-  (error) => {
-    console.error('Error in Marvel API request:', error);
-    return Promise.reject(error);
-  },
-);
-
-// Get Marvel characters
-export const getMarvelCharacters = async () => {
-  const authParams = generateHash();
-  try {
-    const response = await marvelAPI.get('/characters', { params: authParams });
-    return response.results;
-  } catch (error) {
-    throw new Error('Failed to fetch Marvel characters.');
+const handleAxiosResponse = (response) => {
+  if (response?.data?.results) {
+    return response.data.results;
+  } else {
+    throw new Error('No data found.');
   }
 };
 
-// Get details of a Marvel character by ID
+const handleAxiosError = (error) => {
+  if (error.response) {
+    throw new Error('Request error: ' + error.response.status);
+  } else if (error.request) {
+    throw new Error('No response received from server.');
+  } else {
+    throw new Error('Failed to send request: ' + error.message);
+  }
+};
+
+export const getMarvelCharacters = async () => {
+  const authParams = generateHash();
+  try {
+     const response = await marvelAPI.get('/characters', { params: authParams });
+    return handleAxiosResponse(response);
+  } catch (error) {
+    handleAxiosError(error);
+  }
+};
+
 export const getMarvelCharacterById = async (characterId) => {
   const authParams = generateHash();
   try {
     const response = await marvelAPI.get(`/characters/${characterId}`, {
       params: authParams,
     });
-    return response.results[0];
+    return handleAxiosResponse(response)[0]; // Returning only the first result
   } catch (error) {
-    throw new Error('Failed to fetch Marvel character details.');
+    handleAxiosError(error);
   }
 };
 
-// Search Marvel characters by name
 export const searchMarvelCharacters = async (query) => {
   const authParams = generateHash();
   try {
@@ -72,13 +76,12 @@ export const searchMarvelCharacters = async (query) => {
         name: query,
       },
     });
-    return response.results;
+    return handleAxiosResponse(response);
   } catch (error) {
-    throw new Error('Failed to search Marvel characters.');
+    handleAxiosError(error);
   }
 };
 
-// Search Marvel characters by name (starts with query)
 export const searchMarvelCharactersStartsWith = async (query) => {
   const authParams = generateHash();
   try {
@@ -88,9 +91,9 @@ export const searchMarvelCharactersStartsWith = async (query) => {
         nameStartsWith: query,
       },
     });
-    return response.results;
+    return handleAxiosResponse(response);
   } catch (error) {
-    throw new Error('Failed to search Marvel characters.');
+    handleAxiosError(error);
   }
 };
 

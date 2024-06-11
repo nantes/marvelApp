@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+  font-family: 'Roboto Condensed', Helvetica, Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@-moz-document url-prefix() {
+  scrollbar-color: var(--colors-marvel-red) var(--colors-light-gray);
+  scrollbar-width: thin;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+    background-color: var(--colors-light-gray);
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--colors-marvel-red);
+  }
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+:root {
+    --colors-white: #ffffff;
+    --colors-black: #000000;
+    --colors-marvel-red: #ec1d24;
+    --colors-light-gray: #d9d9d9;
+    --colors-dark-gray: #aaaaaa;
+  }
+
+:root {
+    --spacing-none: 0;
+    --spacing-2: 0.2rem;
+    --spacing-4: 0.4rem;
+    --spacing-8: 0.8rem;
+    --spacing-12: 1.2rem;
+    --spacing-16: 1.6rem;
+    --spacing-24: 2.4rem;
+    --spacing-32: 3.2rem;
+    --spacing-36: 3.6rem;
+    --spacing-40: 4rem;
+    --spacing-48: 4.8rem;
+    --spacing-56: 5.6rem;
+    --spacing-60: 6rem;
+    --spacing-64: 6.4rem;
+    --spacing-80: 8rem;
+    --spacing-96: 9.6rem;
+    --spacing-120: 12rem;
+    --spacing-140: 14rem;
+    --spacing-160: 16rem;
+}
