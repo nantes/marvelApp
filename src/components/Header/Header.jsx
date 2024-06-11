@@ -8,7 +8,7 @@ export const Header = () => (
     <header>
       <StyledNav>
         <NavLink to='/'>
-            <img src={marvelLogo} alt='marvel-logo-home-link' />
+          <img src={marvelLogo} alt='marvel-logo-home-link' />
         </NavLink>
       </StyledNav>
     </header>

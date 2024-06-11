@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const StyledLi = styled.li`
   display: flex;
@@ -47,4 +48,11 @@ export const CharacterInfo = styled.section`
     bottom: -0.6rem;
     transform: rotate(45deg);
   }
+`;
+
+export const StyledLink = styled(Link)`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  text-decoration: none;
 `;

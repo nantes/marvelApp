@@ -5,19 +5,22 @@ import {
   Thumbnail,
   CharacterInfo,
   Divider,
+  StyledLink,
 } from './CharacterCard.styles';
 
 const CharacterCard = ({ character }) => {
   return (
     <StyledLi>
-      <Thumbnail
-        src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
-        alt={character.name}
-      />
-      <Divider />
-      <CharacterInfo>
-        <CharacterName level='p2'>{character.name}</CharacterName>
-      </CharacterInfo>
+      <StyledLink to={`/character-details/${character.id}`}>
+        <Thumbnail
+          src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+          alt={character.name}
+        />
+        <Divider />
+        <CharacterInfo>
+          <CharacterName>{character.name}</CharacterName>
+        </CharacterInfo>
+      </StyledLink>
     </StyledLi>
   );
 };

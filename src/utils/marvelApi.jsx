@@ -48,7 +48,7 @@ const handleAxiosError = (error) => {
 export const getMarvelCharacters = async () => {
   const authParams = generateHash();
   try {
-     const response = await marvelAPI.get('/characters', { params: authParams });
+    const response = await marvelAPI.get('/characters', { params: authParams });
     return handleAxiosResponse(response);
   } catch (error) {
     handleAxiosError(error);
@@ -61,7 +61,7 @@ export const getMarvelCharacterById = async (characterId) => {
     const response = await marvelAPI.get(`/characters/${characterId}`, {
       params: authParams,
     });
-    return handleAxiosResponse(response)[0]; 
+    return handleAxiosResponse(response)[0];
   } catch (error) {
     handleAxiosError(error);
   }
