@@ -97,4 +97,19 @@ export const searchMarvelCharactersStartsWith = async (query) => {
   }
 };
 
+export const getComicsByCharacterId = async (id) => {
+  const authParams = generateHash();
+
+  try {
+    const response = await marvelAPI.get(`/characters/${id}/comics`, {
+      params: {
+        ...authParams,
+      },
+    });
+    return handleAxiosResponse(response);
+  } catch (error) {
+    handleAxiosError(error);
+  }
+};
+
 export default marvelAPI;
