@@ -6,8 +6,14 @@ import {
   Container,
   Wrapper,
 } from './CharacterInfoCard.styles';
+import { useFavoriteCharacters } from '@context/useFavoriteCharacters';
+import HeartFilledIcon from '../HeartIcons/HeartFilledIcon';
+import HeartOutlinedIcon from '../HeartIcons/HeartOutlinedIcon';
+import { FavoriteButton } from '@components/FavoriteButton/FavoriteButton';
 
 export const CharacterInfoCard = ({ character }) => {
+  const { toggleFavorite, isFavorite } = useFavoriteCharacters();
+
   return (
     <StyledHeader>
       <Container>
@@ -19,6 +25,16 @@ export const CharacterInfoCard = ({ character }) => {
         <Resume>
           <Wrapper>
             <p>{character.name}</p>
+            <FavoriteButton
+            size='small'
+            onClick={() => toggleFavorite(character)}
+          >
+            {isFavorite(character.id) ? (
+              <HeartFilledIcon />
+            ) : (
+              <HeartOutlinedIcon />
+            )}
+          </FavoriteButton>
           </Wrapper>
           <p>{character.description}</p>
         </Resume>

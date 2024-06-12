@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { StyledFavoriteButton } from '../FavoriteButton/FavoriteButton.styles';
 
 export const StyledLi = styled.li`
   display: flex;
@@ -56,23 +55,4 @@ export const StyledLink = styled(Link)`
   flex-direction: column;
   flex: 1;
   text-decoration: none;
-`;
-export const StyledIconButton = styled(StyledFavoriteButton)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-  border: none;
-  outline: none;
-  padding: var(--spacing-none);
-  margin: var(--spacing-none);
-  background: none;
-  cursor: pointer;
-
-  & svg path {
-    transition: fill 400ms ease-in-out;
-  }
-
-  pointer-events: auto; /* Asegúrate de que los eventos del puntero estén activos */
-
-`;
+`

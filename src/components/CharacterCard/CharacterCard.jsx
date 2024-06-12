@@ -1,16 +1,15 @@
 import PropTypes from 'prop-types';
 import { useFavoriteCharacters } from '@context/useFavoriteCharacters';
-import HeartFilledIcon from '../HeartIcons/HeartFilledIcon';
-import HeartOutlinedIcon from '../HeartIcons/HeartOutlinedIcon';
-
+import HeartFilledIcon from '@components/HeartIcons/HeartFilledIcon';
+import HeartOutlinedIcon from '@components/HeartIcons/HeartOutlinedIcon';
+import { FavoriteButton } from '@components/FavoriteButton/FavoriteButton';
 import {
   StyledLi,
   CharacterName,
   Thumbnail,
   CharacterInfo,
   Divider,
-  StyledLink,
-  StyledIconButton,
+  StyledLink
 } from './CharacterCard.styles';
 
 const CharacterCard = ({ character }) => {
@@ -32,16 +31,16 @@ const CharacterCard = ({ character }) => {
         <Divider />
         <CharacterInfo>
           <CharacterName>{character.name}</CharacterName>
-          <StyledIconButton
+          <FavoriteButton
             size='small'
-            onClick={handleButtonClick}
+            onClick={() => toggleFavorite(character)}
           >
             {isFavorite(character.id) ? (
               <HeartFilledIcon />
             ) : (
               <HeartOutlinedIcon />
             )}
-          </StyledIconButton>
+          </FavoriteButton>
         </CharacterInfo>
     </StyledLi>
   );

@@ -2,7 +2,6 @@ import { StyledFavoriteButton } from './FavoriteButton.styles';
 
 export const FavoriteButton = ({
   onClick,
-  icon: Icon,
   size = 'medium',
   ...props
 }) => {
@@ -13,7 +12,6 @@ export const FavoriteButton = ({
 
   return (
     <StyledFavoriteButton onClick={handleClick} size={size} {...props}>
-      <Icon />
     </StyledFavoriteButton>
   );
 };
