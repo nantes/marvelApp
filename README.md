@@ -1,8 +1,40 @@
-# React + Vite
+# ZARA WEB CHALLENGE
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Webapp to view all marvel characters
 
-Currently, two official plugins are available:
+## Installation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Use npm  to install the necessary dependencies.
+
+```bash
+npm install
+```
+
+## Scripts
+
+Run the application in dev mode
+
+```bash
+npm run dev
+```
+
+Generate a production build
+
+```bash
+npm run build
+```
+
+Locally preview the production build
+
+```bash
+npm run preview
+```
+## Result
+
+App is deployed at [https://marvel-app-git-master-nantes1s-projects.vercel.app/](https://marvel-app-git-master-nantes1s-projects.vercel.app/) 🎉
+
+## TO DO 
+* Add proptypes when needed
+* implement search bar with logic
+* add tests to fulfill coverage 
+* add loading and error page

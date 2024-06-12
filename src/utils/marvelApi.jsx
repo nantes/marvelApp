@@ -45,10 +45,12 @@ const handleAxiosError = (error) => {
   }
 };
 
-export const getMarvelCharacters = async () => {
+export const getMarvelCharacters = async (limit = 50) => {
   const authParams = generateHash();
   try {
-    const response = await marvelAPI.get('/characters', { params: authParams });
+    const response = await marvelAPI.get('/characters', {
+      params: { ...authParams, limit },
+    });
     return handleAxiosResponse(response);
   } catch (error) {
     handleAxiosError(error);
