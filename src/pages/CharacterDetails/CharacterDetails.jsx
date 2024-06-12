@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { CharacterInfoCard } from '@components/CharacterInfoCard/CharacterInfoCard';
-import { CharacterInfoComics } from '../../components/CharacterInfoComics/CharacterInfoComics';
+import { CharacterInfoComics } from '@components/CharacterInfoComics/CharacterInfoComics';
 import {
   getMarvelCharacterById,
   getComicsByCharacterId,

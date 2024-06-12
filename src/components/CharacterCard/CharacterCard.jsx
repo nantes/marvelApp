@@ -1,4 +1,8 @@
 import PropTypes from 'prop-types';
+import { useFavoriteCharacters } from '@context/useFavoriteCharacters';
+import HeartFilledIcon from '../HeartIcons/HeartFilledIcon';
+import HeartOutlinedIcon from '../HeartIcons/HeartOutlinedIcon';
+
 import {
   StyledLi,
   CharacterName,
@@ -6,9 +10,16 @@ import {
   CharacterInfo,
   Divider,
   StyledLink,
+  StyledIconButton,
 } from './CharacterCard.styles';
 
 const CharacterCard = ({ character }) => {
+  const { toggleFavorite, isFavorite } = useFavoriteCharacters();
+  const handleButtonClick = (event) => {
+    toggleFavorite(character);
+    event.stopPropagation();
+  };
+
   return (
     <StyledLi>
       <StyledLink to={`/character-details/${character.id}`}>
@@ -16,11 +27,22 @@ const CharacterCard = ({ character }) => {
           src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
           alt={character.name}
         />
+      </StyledLink>
+
         <Divider />
         <CharacterInfo>
           <CharacterName>{character.name}</CharacterName>
+          <StyledIconButton
+            size='small'
+            onClick={handleButtonClick}
+          >
+            {isFavorite(character.id) ? (
+              <HeartFilledIcon />
+            ) : (
+              <HeartOutlinedIcon />
+            )}
+          </StyledIconButton>
         </CharacterInfo>
-      </StyledLink>
     </StyledLi>
   );
 };

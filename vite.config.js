@@ -19,6 +19,9 @@ export default defineConfig({
       '@assets': path.resolve(
         url.fileURLToPath(new URL('./src/assets/', import.meta.url)),
       ),
+      '@context': path.resolve(
+        url.fileURLToPath(new URL('./src/context/', import.meta.url)),
+      ),
     },
   },
 });
