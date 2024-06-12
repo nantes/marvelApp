@@ -55,4 +55,4 @@ export const StyledLink = styled(Link)`
   flex-direction: column;
   flex: 1;
   text-decoration: none;
-`
+`;

@@ -26,15 +26,15 @@ export const CharacterInfoCard = ({ character }) => {
           <Wrapper>
             <p>{character.name}</p>
             <FavoriteButton
-            size='small'
-            onClick={() => toggleFavorite(character)}
-          >
-            {isFavorite(character.id) ? (
-              <HeartFilledIcon />
-            ) : (
-              <HeartOutlinedIcon />
-            )}
-          </FavoriteButton>
+              size='small'
+              onClick={() => toggleFavorite(character)}
+            >
+              {isFavorite(character.id) ? (
+                <HeartFilledIcon />
+              ) : (
+                <HeartOutlinedIcon />
+              )}
+            </FavoriteButton>
           </Wrapper>
           <p>{character.description}</p>
         </Resume>

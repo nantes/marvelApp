@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import * as media from '@theme/media-queries';
+import { NavLink } from 'react-router-dom';
 
 export const StyledNav = styled.nav`
   display: flex;
@@ -16,4 +17,13 @@ export const StyledNav = styled.nav`
   ${media.extraSmallMedia} {
     padding: var(--spacing-16);
   }
+`;
+
+export const StyledNavFavorites = styled(NavLink)`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: var(--spacing-8);
+  text-decoration: none;
+  color: var(--colors-white);
 `;

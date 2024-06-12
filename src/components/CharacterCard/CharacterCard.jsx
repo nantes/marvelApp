@@ -9,15 +9,11 @@ import {
   Thumbnail,
   CharacterInfo,
   Divider,
-  StyledLink
+  StyledLink,
 } from './CharacterCard.styles';
 
 const CharacterCard = ({ character }) => {
   const { toggleFavorite, isFavorite } = useFavoriteCharacters();
-  const handleButtonClick = (event) => {
-    toggleFavorite(character);
-    event.stopPropagation();
-  };
 
   return (
     <StyledLi>
@@ -28,20 +24,17 @@ const CharacterCard = ({ character }) => {
         />
       </StyledLink>
 
-        <Divider />
-        <CharacterInfo>
-          <CharacterName>{character.name}</CharacterName>
-          <FavoriteButton
-            size='small'
-            onClick={() => toggleFavorite(character)}
-          >
-            {isFavorite(character.id) ? (
-              <HeartFilledIcon />
-            ) : (
-              <HeartOutlinedIcon />
-            )}
-          </FavoriteButton>
-        </CharacterInfo>
+      <Divider />
+      <CharacterInfo>
+        <CharacterName>{character.name}</CharacterName>
+        <FavoriteButton size='small' onClick={() => toggleFavorite(character)}>
+          {isFavorite(character.id) ? (
+            <HeartFilledIcon />
+          ) : (
+            <HeartOutlinedIcon />
+          )}
+        </FavoriteButton>
+      </CharacterInfo>
     </StyledLi>
   );
 };
