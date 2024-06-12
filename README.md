@@ -31,10 +31,11 @@ npm run preview
 ```
 ## Result
 
-App is deployed at [https://marvel-app-git-master-nantes1s-projects.vercel.app/](https://marvel-app-git-master-nantes1s-projects.vercel.app/) 🎉
+App is deployed at [https://marvel-app-git-master-nantes1s-projects.vercel.app/](https://marvel-app-git-master-nantes1s-projects.vercel.app/)
 
-## TO DO 
+## TO-DO 
 * Add proptypes when needed
 * implement search bar with logic
+* improve UI based on figma
 * add tests to fulfill coverage 
 * add loading and error page
