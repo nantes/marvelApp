@@ -10,6 +10,11 @@ Use npm  to install the necessary dependencies.
 npm install
 ```
 
+Configure .env var with this proper values
+VITE_APP_MARVEL_API_BASE_URL=http://gateway.marvel.com/v1/public
+VITE_APP_MARVEL_API_PUBLIC_KEY=#PUBLIC_KEY#
+VITE_APP_MARVEL_API_PRIVATE_KEY=#PRIVATE_KEY#
+
 ## Scripts
 
 Run the application in dev mode
