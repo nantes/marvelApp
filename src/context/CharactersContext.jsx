@@ -7,28 +7,9 @@ export const FavoriteCharactersContext = createContext();
 
 export const MarvelCharactersProvider = ({ children }) => {
   const [characters, setCharacters] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchCharacters = async () => {
-      try {
-        const charactersData = await getMarvelCharacters();
-        setCharacters(charactersData);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchCharacters();
-  }, []);
 
   return (
-    <MarvelCharactersContext.Provider
-      value={{ characters, loading, error, setCharacters }}
-    >
+    <MarvelCharactersContext.Provider value={{ characters, setCharacters }}>
       {children}
     </MarvelCharactersContext.Provider>
   );

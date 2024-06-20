@@ -14,6 +14,10 @@ const CharactersList = ({ setIsLoading }) => {
   const [searchValue, setSearchValue] = useState('');
 
   useEffect(() => {
+    if (characters.length > 0) {
+      setIsLoading(false);
+      return;
+    }
     const fetchData = async () => {
       setIsLoading(true);
       try {
@@ -27,7 +31,7 @@ const CharactersList = ({ setIsLoading }) => {
     };
 
     fetchData();
-  }, [setCharacters, setIsLoading]);
+  }, [characters, setCharacters, setIsLoading]);
 
   const filteredCharacters = useFilteredCharacters(characters, searchValue);
 
