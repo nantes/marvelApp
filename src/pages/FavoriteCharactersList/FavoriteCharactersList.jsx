@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { useFavoriteCharacters } from '@context/useFavoriteCharacters';
 import CharacterCard from '@components/CharacterCard/CharacterCard';
 import { SearchBar } from '@components/SearchBar/SearchBar';
-import { useFilteredCharacters } from "@hooks/useFilteredCharacters"
+import { useFilteredCharacters } from '@hooks/useFilteredCharacters';
 
 import {
   Container,

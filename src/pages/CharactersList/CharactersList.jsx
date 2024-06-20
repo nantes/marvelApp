@@ -4,7 +4,7 @@ import { getMarvelCharacters } from '../../utils/marvelApi';
 import CharacterCard from '@components/CharacterCard/CharacterCard';
 import { CharacterListGrid, Container } from './CharactersList.styles';
 import { SearchBar } from '@components/SearchBar/SearchBar';
-import { useFilteredCharacters } from "@hooks/useFilteredCharacters"
+import { useFilteredCharacters } from '@hooks/useFilteredCharacters';
 
 export const CharactersList = () => {
   const [charactersData, setCharactersData] = useState([]);
@@ -28,7 +28,6 @@ export const CharactersList = () => {
   }, []);
 
   const filteredCharacters = useFilteredCharacters(charactersData, searchValue);
-
 
   if (isLoading) {
     return <div>Loading...</div>;

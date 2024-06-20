@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react';
 
-export const useFilteredCharacters = (charactersData, searchValue, maxResults = 50) => {
+export const useFilteredCharacters = (
+  charactersData,
+  searchValue,
+  maxResults = 50,
+) => {
   const [filteredCharacters, setFilteredCharacters] = useState([]);
 
   useEffect(() => {

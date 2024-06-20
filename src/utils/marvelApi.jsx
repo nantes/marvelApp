@@ -45,16 +45,28 @@ const handleAxiosError = (error) => {
   }
 };
 
-export const getMarvelCharacters = async (limit = 50) => {
+export const getMarvelCharacters = async (limit = 100) => {
   const authParams = generateHash();
+  const allCharacters = [];
+  let offset = 0;
+
   try {
-    const response = await marvelAPI.get('/characters', {
-      params: { ...authParams, limit },
-    });
-    return handleAxiosResponse(response);
+    // eslint-disable-next-line no-constant-condition
+    while (true) {
+      const response = await marvelAPI.get('/characters', {
+        params: { ...authParams, limit: limit, offset },
+      });
+
+      const characters = handleAxiosResponse(response);
+      allCharacters.push(...characters);
+      offset += limit;
+      if (characters.length < limit) break;
+    }
   } catch (error) {
     handleAxiosError(error);
   }
+
+  return allCharacters;
 };
 
 export const getMarvelCharacterById = async (characterId) => {
@@ -69,7 +81,7 @@ export const getMarvelCharacterById = async (characterId) => {
   }
 };
 
-export const searchMarvelCharacters = async (query) => {
+export const searchMarvelCharactersbyExactName = async (query) => {
   const authParams = generateHash();
   try {
     const response = await marvelAPI.get('/characters', {
