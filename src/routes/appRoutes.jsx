@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   createBrowserRouter,
   Navigate,
@@ -8,32 +9,34 @@ import { Header } from '@components/Header/Header';
 import { CharacterDetails } from '../pages/CharacterDetails/CharacterDetails';
 import { FavoriteCharactersList } from '../pages/FavoriteCharactersList/FavoriteCharactersList';
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Header />,
-    children: [
-      {
-        path: '/',
-        element: <CharactersList />,
-      },
-      {
-        path: '/favorites',
-        element: <FavoriteCharactersList />,
-      },
-      {
-        path: '/character-details/:id',
-        element: <CharacterDetails />,
-      },
-    ],
-  },
-  {
-    path: '*',
-    element: <Navigate to='/' replace />,
-  },
-]);
-
 const AppRoutes = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <Header isLoading={isLoading} />,
+      children: [
+        {
+          path: '/',
+          element: <CharactersList setIsLoading={setIsLoading} />,
+        },
+        {
+          path: '/favorites',
+          element: <FavoriteCharactersList />,
+        },
+        {
+          path: '/character-details/:id',
+          element: <CharacterDetails setIsLoading={setIsLoading} />,
+        },
+      ],
+    },
+    {
+      path: '*',
+      element: <Navigate to='/' replace />,
+    },
+  ]);
+
   return <RouterProvider router={router} />;
 };
 

@@ -1,11 +1,13 @@
 import { Outlet } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { StyledNav, StyledNavFavorites } from './Header.styles';
 import { NavLink } from 'react-router-dom';
 import marvelLogo from '@assets/marvel_logo.svg';
 import HeartFilledIcon from '@components/Icons/HeartFilledIcon';
 import { useFavoriteCharacters } from '@context/useFavoriteCharacters';
+import LoadingBar from '@components/LoadingBar/LoadingBar';
 
-export const Header = () => {
+export const Header = ({ isLoading }) => {
   const { favorites } = useFavoriteCharacters();
 
   return (
@@ -21,7 +23,12 @@ export const Header = () => {
           </StyledNavFavorites>
         </StyledNav>
       </header>
+      <LoadingBar loading={isLoading} />
       <Outlet />
     </>
   );
+};
+
+Header.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
 };

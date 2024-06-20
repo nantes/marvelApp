@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet-async';
 import { getMarvelCharacters } from '../../utils/marvelApi';
 import CharacterCard from '@components/CharacterCard/CharacterCard';
@@ -6,32 +7,35 @@ import { CharacterListGrid, Container } from './CharactersList.styles';
 import { SearchBar } from '@components/SearchBar/SearchBar';
 import { useFilteredCharacters } from '@hooks/useFilteredCharacters';
 
-export const CharactersList = () => {
+export const CharactersList = ({ setIsLoading }) => {
   const [charactersData, setCharactersData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchValue, setSearchValue] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true);
       try {
-        const characters = await getMarvelCharacters();
-        setCharactersData(characters);
-        setIsLoading(false);
+        let cachedCharacters = localStorage.getItem('marvelCharacters'); // Intenta obtener los datos del caché local
+
+        if (cachedCharacters) {
+          setCharactersData(JSON.parse(cachedCharacters));
+        } else {
+          const characters = await getMarvelCharacters();
+          setCharactersData(characters);
+          localStorage.setItem('marvelCharacters', JSON.stringify(characters)); // Guarda los datos en el caché local
+        }
       } catch (error) {
         setError(error.message);
+      } finally {
         setIsLoading(false);
       }
     };
 
     fetchData();
-  }, []);
+  }, [setIsLoading]);
 
   const filteredCharacters = useFilteredCharacters(charactersData, searchValue);
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
 
   if (error) {
     return <div>Error: {error}</div>;
@@ -56,4 +60,8 @@ export const CharactersList = () => {
       </Container>
     </>
   );
+};
+
+CharactersList.propTypes = {
+  setIsLoading: PropTypes.func.isRequired,
 };
