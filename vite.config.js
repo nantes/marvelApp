@@ -22,6 +22,9 @@ export default defineConfig({
       '@context': path.resolve(
         url.fileURLToPath(new URL('./src/context/', import.meta.url)),
       ),
+      '@hooks': path.resolve(
+        url.fileURLToPath(new URL('./src/hooks/', import.meta.url)),
+      ),
     },
   },
 });

@@ -7,8 +7,8 @@ import {
   Wrapper,
 } from './CharacterInfoCard.styles';
 import { useFavoriteCharacters } from '@context/useFavoriteCharacters';
-import HeartFilledIcon from '../HeartIcons/HeartFilledIcon';
-import HeartOutlinedIcon from '../HeartIcons/HeartOutlinedIcon';
+import HeartFilledIcon from '@components/Icons/HeartFilledIcon';
+import HeartOutlinedIcon from '@components/Icons/HeartOutlinedIcon';
 import { FavoriteButton } from '@components/FavoriteButton/FavoriteButton';
 
 export const CharacterInfoCard = ({ character }) => {

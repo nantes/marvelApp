@@ -1,6 +1,10 @@
+import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useFavoriteCharacters } from '@context/useFavoriteCharacters';
 import CharacterCard from '@components/CharacterCard/CharacterCard';
+import { SearchBar } from '@components/SearchBar/SearchBar';
+import { useFilteredCharacters } from "@hooks/useFilteredCharacters"
+
 import {
   Container,
   StyledHeading,
@@ -9,6 +13,9 @@ import {
 
 export const FavoriteCharactersList = () => {
   const { favorites } = useFavoriteCharacters();
+  const [searchValue, setSearchValue] = useState('');
+
+  const filteredCharacters = useFilteredCharacters(favorites, searchValue);
 
   return (
     <>
@@ -18,8 +25,12 @@ export const FavoriteCharactersList = () => {
 
       <Container>
         <StyledHeading>FAVORITES</StyledHeading>
+        <SearchBar
+          onSearch={setSearchValue}
+          totalCharacters={filteredCharacters.length}
+        ></SearchBar>
         <CharacterFavoritesGrid>
-          {favorites.map((character) => (
+          {filteredCharacters.map((character) => (
             <CharacterCard key={character.id} character={character} />
           ))}
         </CharacterFavoritesGrid>

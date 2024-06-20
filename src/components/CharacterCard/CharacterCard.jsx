@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useFavoriteCharacters } from '@context/useFavoriteCharacters';
-import HeartFilledIcon from '@components/HeartIcons/HeartFilledIcon';
-import HeartOutlinedIcon from '@components/HeartIcons/HeartOutlinedIcon';
+import HeartFilledIcon from '@components/Icons/HeartFilledIcon';
+import HeartOutlinedIcon from '@components/Icons/HeartOutlinedIcon';
 import { FavoriteButton } from '@components/FavoriteButton/FavoriteButton';
 import {
   StyledLi,
