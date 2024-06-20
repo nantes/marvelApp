@@ -4,10 +4,10 @@ import {
   Navigate,
   RouterProvider,
 } from 'react-router-dom';
-import { CharactersList } from '../pages/CharactersList/CharactersList';
+import CharactersList from '../pages/CharactersList/CharactersList';
 import { Header } from '@components/Header/Header';
-import { CharacterDetails } from '../pages/CharacterDetails/CharacterDetails';
-import { FavoriteCharactersList } from '../pages/FavoriteCharactersList/FavoriteCharactersList';
+import CharacterDetails from '../pages/CharacterDetails/CharacterDetails';
+import FavoriteCharactersList from '../pages/FavoriteCharactersList/FavoriteCharactersList';
 
 const AppRoutes = () => {
   const [isLoading, setIsLoading] = useState(true);

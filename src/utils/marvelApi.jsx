@@ -49,10 +49,10 @@ export const getMarvelCharacters = async (limit = 100) => {
   const authParams = generateHash();
   const allCharacters = [];
   let offset = 0;
+  let shouldFetch = true;
 
   try {
-    // eslint-disable-next-line no-constant-condition
-    while (true) {
+    while (shouldFetch) {
       const response = await marvelAPI.get('/characters', {
         params: { ...authParams, limit: limit, offset },
       });
@@ -60,7 +60,7 @@ export const getMarvelCharacters = async (limit = 100) => {
       const characters = handleAxiosResponse(response);
       allCharacters.push(...characters);
       offset += limit;
-      if (characters.length < limit) break;
+      shouldFetch = characters.length === limit;
     }
   } catch (error) {
     handleAxiosError(error);

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 export const useFilteredCharacters = (
-  charactersData,
+  charactersData = [],
   searchValue,
   maxResults = 50,
 ) => {

@@ -1,12 +1,17 @@
 import { HelmetProvider } from 'react-helmet-async';
 import AppRoutes from './routes/appRoutes';
-import { FavoriteCharactersProvider } from './context/FavoriteCharactersContext';
+import {
+  MarvelCharactersProvider,
+  FavoriteCharactersProvider,
+} from './context/CharactersContext';
 import '@theme/global.css';
 
 const App = () => (
   <HelmetProvider>
     <FavoriteCharactersProvider>
-      <AppRoutes />
+      <MarvelCharactersProvider>
+        <AppRoutes />
+      </MarvelCharactersProvider>
     </FavoriteCharactersProvider>
   </HelmetProvider>
 );

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useFavoriteCharacters } from '@context/useFavoriteCharacters';
+import { useFavoriteCharacters } from '@context/useCharacters';
 import HeartFilledIcon from '@components/Icons/HeartFilledIcon';
 import HeartOutlinedIcon from '@components/Icons/HeartOutlinedIcon';
 import { FavoriteButton } from '@components/FavoriteButton/FavoriteButton';

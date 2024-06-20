@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+import PropTypes from 'prop-types';
 import { ComicCard } from '@components/ComicCard/ComicCard';
 import {
   Container,
@@ -21,4 +21,17 @@ export const CharacterInfoComics = ({ comics }) => {
       </Container>
     </StyledSection>
   );
+};
+
+CharacterInfoComics.propTypes = {
+  comics: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      thumbnail: PropTypes.shape({
+        path: PropTypes.string.isRequired,
+        extension: PropTypes.string.isRequired,
+      }),
+    }),
+  ).isRequired,
 };

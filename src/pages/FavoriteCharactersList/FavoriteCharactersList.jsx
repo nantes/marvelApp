@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useFavoriteCharacters } from '@context/useFavoriteCharacters';
+import { useFavoriteCharacters } from '@context/useCharacters';
 import CharacterCard from '@components/CharacterCard/CharacterCard';
 import { SearchBar } from '@components/SearchBar/SearchBar';
 import { useFilteredCharacters } from '@hooks/useFilteredCharacters';
@@ -11,11 +11,15 @@ import {
   CharacterFavoritesGrid,
 } from './FavoriteCharactersList.styles';
 
-export const FavoriteCharactersList = () => {
-  const { favorites } = useFavoriteCharacters();
+const FavoriteCharactersList = () => {
+  const { favorites, removeFavorite } = useFavoriteCharacters();
   const [searchValue, setSearchValue] = useState('');
 
   const filteredCharacters = useFilteredCharacters(favorites, searchValue);
+
+  const handleRemoveFavorite = (characterId) => {
+    removeFavorite(characterId);
+  };
 
   return (
     <>
@@ -28,13 +32,19 @@ export const FavoriteCharactersList = () => {
         <SearchBar
           onSearch={setSearchValue}
           totalCharacters={filteredCharacters.length}
-        ></SearchBar>
+        />
         <CharacterFavoritesGrid>
           {filteredCharacters.map((character) => (
-            <CharacterCard key={character.id} character={character} />
+            <CharacterCard
+              key={character.id}
+              character={character}
+              onRemoveFavorite={() => handleRemoveFavorite(character.id)} // Pasar la función de remover favorito como prop
+            />
           ))}
         </CharacterFavoritesGrid>
       </Container>
     </>
   );
 };
+
+export default FavoriteCharactersList;

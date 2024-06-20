@@ -9,7 +9,7 @@ import {
   getComicsByCharacterId,
 } from '../../utils/marvelApi';
 
-export const CharacterDetails = ({ setIsLoading }) => {
+const CharacterDetails = ({ setIsLoading }) => {
   const { id } = useParams();
   const [characterData, setCharacterData] = useState({});
   const [comicsData, setComicsData] = useState([]);
@@ -60,3 +60,5 @@ export const CharacterDetails = ({ setIsLoading }) => {
 CharacterDetails.propTypes = {
   setIsLoading: PropTypes.func.isRequired,
 };
+
+export default CharacterDetails;
