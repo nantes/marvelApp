@@ -12,17 +12,21 @@ const CharactersList = ({ setIsLoading }) => {
   const { characters, setCharacters } = useCharactersContext();
   const [error, setError] = useState(null);
   const [searchValue, setSearchValue] = useState('');
+  const [offset, setOffset] = useState(0);
+  const filteredCharacters = useFilteredCharacters(characters, searchValue);
+  let isFetching = true;
 
   useEffect(() => {
-    if (characters.length > 0) {
-      setIsLoading(false);
-      return;
-    }
     const fetchData = async () => {
+      if (!isFetching) return;
       setIsLoading(true);
       try {
-        const charactersData = await getMarvelCharacters();
-        setCharacters(charactersData);
+        const newCharacters = await getMarvelCharacters(100, offset);
+        setCharacters((currentCharacters) => [
+          ...currentCharacters,
+          ...newCharacters,
+        ]);
+        setOffset((prevOffset) => prevOffset + 100);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -31,14 +35,21 @@ const CharactersList = ({ setIsLoading }) => {
     };
 
     fetchData();
-  }, [characters, setCharacters, setIsLoading]);
 
-  const filteredCharacters = useFilteredCharacters(characters, searchValue);
+    return () => {
+      isFetching = false;
+    };
+  }, [characters.length, setCharacters, setIsLoading, offset]);
+
+  const handleSearchChange = (value) => {
+    setSearchValue(value);
+  };
 
   if (error) {
     return <div>Error: {error}</div>;
   }
 
+  console.log('FILTERED ', filteredCharacters.length);
   return (
     <>
       <Helmet>
@@ -47,7 +58,7 @@ const CharactersList = ({ setIsLoading }) => {
 
       <Container>
         <SearchBar
-          onSearch={setSearchValue}
+          onSearch={handleSearchChange}
           totalCharacters={filteredCharacters.length}
         />
         <CharacterListGrid>

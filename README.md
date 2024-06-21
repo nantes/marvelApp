@@ -39,4 +39,5 @@ npm run preview
 App is deployed at [https://marvel-app-git-master-nantes1s-projects.vercel.app/](https://marvel-app-git-master-nantes1s-projects.vercel.app/)
 
 ## NOTES
-To search characters based by name, in the marvel API I only find option to gather by the exact name, or characters that starts with. To tackle this, I decide to implement a recurent logic to gather all the characters by calling the endpoint by 100 characters (limitation of the API), and do the 50 limit characters inside the WebApp. This has an impact in the performance at the initial load, but after that it will use the information stored in context and no need to do extra calls if the user move between the webapp
+To search characters based by name, in the marvel API I only find option to gather by the exact name, or characters that starts with. To tackle this, I decide to implement a recurent logic to gather all the characters by calling the endpoint by 100 characters (limitation of the API), and do the 50 limit characters inside the WebApp. Created a context with all characters, and keep updating it until it reachs his limits.
+Originaly I waited to finish all endpoints calls to show the characters,but this was too much blocker by the time it's consumed, so decided for this approach.

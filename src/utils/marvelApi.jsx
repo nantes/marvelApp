@@ -45,28 +45,19 @@ const handleAxiosError = (error) => {
   }
 };
 
-export const getMarvelCharacters = async (limit = 100) => {
+export const getMarvelCharacters = async (limit = 100, offset = 0) => {
   const authParams = generateHash();
-  const allCharacters = [];
-  let offset = 0;
-  let shouldFetch = true;
 
   try {
-    while (shouldFetch) {
-      const response = await marvelAPI.get('/characters', {
-        params: { ...authParams, limit: limit, offset },
-      });
+    const response = await marvelAPI.get('/characters', {
+      params: { ...authParams, limit: limit, offset: offset },
+    });
 
-      const characters = handleAxiosResponse(response);
-      allCharacters.push(...characters);
-      offset += limit;
-      shouldFetch = characters.length === limit;
-    }
+    return handleAxiosResponse(response);
   } catch (error) {
     handleAxiosError(error);
+    return [];
   }
-
-  return allCharacters;
 };
 
 export const getMarvelCharacterById = async (characterId) => {
