@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 import { useFavoriteCharacters } from '@context/useCharacters';
 import HeartFilledIcon from '@components/Icons/HeartFilledIcon';
 import HeartOutlinedIcon from '@components/Icons/HeartOutlinedIcon';
@@ -14,9 +15,18 @@ import {
 
 const CharacterCard = ({ character }) => {
   const { toggleFavorite, isFavorite } = useFavoriteCharacters();
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
 
   return (
-    <StyledLi>
+    <StyledLi onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <StyledLink to={`/character-details/${character.id}`}>
         <Thumbnail
           src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
@@ -29,7 +39,10 @@ const CharacterCard = ({ character }) => {
         <CharacterName>{character.name}</CharacterName>
         <FavoriteButton size='small' onClick={() => toggleFavorite(character)}>
           {isFavorite(character.id) ? (
-            <HeartFilledIcon />
+            <HeartFilledIcon
+              isHovered={isHovered}
+              className={isHovered ? 'hovered' : ''}
+            />
           ) : (
             <HeartOutlinedIcon />
           )}

@@ -18,7 +18,7 @@ export const Header = ({ isLoading }) => {
             <img src={marvelLogo} alt='marvel-logo-home-link' />
           </NavLink>
           <StyledNavFavorites to='/favorites'>
-            <HeartFilledIcon />
+            <HeartFilledIcon isHovered={false} />
             <p>{favorites.length}</p>
           </StyledNavFavorites>
         </StyledNav>

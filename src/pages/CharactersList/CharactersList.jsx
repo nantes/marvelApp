@@ -51,7 +51,6 @@ const CharactersList = ({ setIsLoading }) => {
     return <div>Error: {error}</div>;
   }
 
-  console.log('FILTERED ', filteredCharacters.length);
   return (
     <>
       <Helmet>

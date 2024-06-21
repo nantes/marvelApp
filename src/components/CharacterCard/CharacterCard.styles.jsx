@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 export const StyledLi = styled.li`
   display: flex;
   flex-direction: column;
+  transition: background-color 0.3s ease;
 `;
 
 export const Thumbnail = styled.img`

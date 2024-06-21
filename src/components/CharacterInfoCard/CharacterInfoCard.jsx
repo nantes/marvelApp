@@ -30,7 +30,7 @@ export const CharacterInfoCard = ({ character }) => {
               onClick={() => toggleFavorite(character)}
             >
               {isFavorite(character.id) ? (
-                <HeartFilledIcon />
+                <HeartFilledIcon isHovered={false} />
               ) : (
                 <HeartOutlinedIcon />
               )}
