@@ -26,7 +26,9 @@ const CharactersList = ({ setIsLoading }) => {
           ...currentCharacters,
           ...newCharacters,
         ]);
-        setOffset((prevOffset) => prevOffset + 100);
+        if (newCharacters.length === 100) {
+          setOffset((prevOffset) => prevOffset + 100);
+        }
       } catch (error) {
         setError(error.message);
       } finally {
@@ -39,7 +41,7 @@ const CharactersList = ({ setIsLoading }) => {
     return () => {
       isFetching = false;
     };
-  }, [characters.length, setCharacters, setIsLoading, offset]);
+  }, [setCharacters, setIsLoading, offset]);
 
   const handleSearchChange = (value) => {
     setSearchValue(value);

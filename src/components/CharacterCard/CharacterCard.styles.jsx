@@ -31,10 +31,15 @@ export const CharacterInfo = styled.section`
   flex: 1;
   position: relative;
   background-color: var(--colors-black);
+  transition: background-color 0.3s ease;
 
   box-sizing: border-box;
   padding: var(--spacing-16) var(--spacing-16) var(--spacing-24)
     var(--spacing-16);
+
+  &:hover {
+    background-color: var(--colors-marvel-red);
+  }
 
   &:after {
     content: '';

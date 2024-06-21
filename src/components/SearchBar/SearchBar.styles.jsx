@@ -4,6 +4,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: var(--spacing-12);
+  padding-bottom: 24px;
 `;
 
 export const StyledResultsCount = styled.p`
