@@ -28,7 +28,7 @@ const LoadingBar = styled.div`
 
 const LoadingBarComponent = ({ loading }) => {
   return loading ? (
-    <LoadingBarContainer>
+    <LoadingBarContainer role='progressbar'>
       <LoadingBar />
     </LoadingBarContainer>
   ) : null;

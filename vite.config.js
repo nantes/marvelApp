@@ -5,6 +5,7 @@ import url from 'url';
 
 export default defineConfig({
   plugins: [react()],
+  environment: 'jsdom',
   resolve: {
     alias: {
       '@components': path.resolve(
@@ -26,5 +27,10 @@ export default defineConfig({
         url.fileURLToPath(new URL('./src/hooks/', import.meta.url)),
       ),
     },
+  },
+  test: {
+    setupFiles: './setupTests.js',
+    include: ['**/*.test.jsx'],
+    globals: true,
   },
 });

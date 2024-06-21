@@ -38,7 +38,7 @@ const FavoriteCharactersList = () => {
             <CharacterCard
               key={character.id}
               character={character}
-              onRemoveFavorite={() => handleRemoveFavorite(character.id)} // Pasar la función de remover favorito como prop
+              onRemoveFavorite={() => handleRemoveFavorite(character.id)}
             />
           ))}
         </CharacterFavoritesGrid>
